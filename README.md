@@ -6,10 +6,9 @@
 ![HTML/CSS/JS](https://img.shields.io/badge/Frontend-Vanilla_JS_%7C_JSP-E34F26)
 ![Docker](https://img.shields.io/badge/-Docker-2496ED?logo=Docker&logoColor=white)
 
-**Web Route Manager** — это веб-приложение для управления коллекцией маршрутов. Пользователи могут регистрироваться в системе, просматривать общую базу маршрутов и добавлять свои собственные.
+**Web Route Manager** — это веб-приложение для управления коллекцией маршрутов. Пользователи могут регистрироваться в системе, просматривать общую базу маршрутов и добавлять свои собственные
 
-> 💡 **Эволюция проекта:** 
-Изначально проект был написан на чистом Jakarta Servlet API + JDBC. 
+> Изначально проект был написан на чистом Jakarta Servlet API + JDBC. 
 В рамках развития архитектуры проект был успешно мигрирован на **Spring Boot 3**, **Spring MVC** и **Spring Data JPA (Hibernate)**. 
 Это позволило избавиться от boilerplate-кода, делегировать управление транзакциями и маппингом таблиц фреймворку, а также использовать встроенный сервер Tomcat
 
@@ -37,8 +36,8 @@
 
 1. Склонируйте репозиторий:
    ```bash
-   git clone https://github.com/ВАШ_ЛОГИН/web-route-manager.git
-   cd web-route-manager
+   git clone https://github.com/ivan-k-06/spring-route-manager.git
+   cd spring-route-manager
    ```
 
 2. Запустите приложение с помощью Docker Compose:
@@ -49,12 +48,12 @@
 3. Откройте в браузере:
    👉 **http://localhost:8080/** 
 
-*Для остановки нажмите `Ctrl+C`. Чтобы удалить базу данных и начать с нуля, выполните `docker-compose down -v`.*
+*Для остановки нажмите `Ctrl+C`. Чтобы удалить базу данных и начать с нуля, выполните `docker-compose down -v`*
 
 ## Структура проекта
 Проект реализован по классическому паттерну **MVC (Model-View-Controller)**:
 
-* `src/main/java/.../model/` — **(M)odel**: JPA-сущности бизнес-логики (Entity)
-* `src/main/java/.../repository/` — **(M)odel**: Слой доступа к данным (Spring Data JPA интерфейсы)
+* `src/main/java/.../model/` — **(M)odel**: JPA-сущности бизнес-логики
+* `src/main/java/.../repository/` — **(M)odel**: Слой доступа к данным
 * `src/main/webapp/WEB-INF/views/` — **(V)iew**: JSP-шаблоны страниц
 * `src/main/java/.../web/controllers/` — **(C)ontroller**: Spring REST/MVC Контроллеры, маршрутизирующие запросы браузера
