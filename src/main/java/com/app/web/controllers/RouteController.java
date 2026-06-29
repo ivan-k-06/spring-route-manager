@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/routes")
-public class RouteController {
+public final class RouteController {
 
     private final RouteRepository routeRepository;
 

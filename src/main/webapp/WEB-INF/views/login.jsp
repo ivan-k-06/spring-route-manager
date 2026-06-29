@@ -11,10 +11,12 @@
 
     <div class="page" style="display: flex; justify-content: center;">
         <div style="max-width: 440px; width: 100%;">
-            <span class="kicker">Доступ к системе</span>
-            <h1 class="giant-title">Вход<br>в<span class="accent">.</span>систему</h1>
+            <div class="page-header">
+                <span class="kicker">Доступ к системе</span>
+                <h1 class="giant-title">Вход в систему</h1>
+            </div>
 
-            <div class="panel" style="margin-top: 32px;">
+            <div class="panel">
                 <p class="msg error">${error}</p>
                 <p class="msg success">${message}</p>
 

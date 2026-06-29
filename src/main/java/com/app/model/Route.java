@@ -1,11 +1,18 @@
 package com.app.model;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import java.time.ZonedDateTime;
 
+@Getter
+@Setter
+@NoArgsConstructor
 @Entity
 @Table(name = "routes")
-public final class Route {
+public class Route {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -44,70 +51,4 @@ public final class Route {
 
     @Column(name = "owner_login", nullable = false)
     private String owner;
-
-    public Route() {}
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Coordinates getCoordinates() {
-        return coordinates;
-    }
-
-    public void setCoordinates(Coordinates coordinates) {
-        this.coordinates = coordinates;
-    }
-
-    public ZonedDateTime getCreationDate() {
-        return creationDate;
-    }
-
-    public void setCreationDate(ZonedDateTime creationDate) {
-        this.creationDate = creationDate;
-    }
-
-    public Location getFrom() {
-        return from;
-    }
-
-    public void setFrom(Location from) {
-        this.from = from;
-    }
-
-    public Location getTo() {
-        return to;
-    }
-
-    public void setTo(Location to) {
-        this.to = to;
-    }
-
-    public Float getDistance() {
-        return distance;
-    }
-
-    public void setDistance(Float distance) {
-        this.distance = distance;
-    }
-
-    public String getOwner() {
-        return owner;
-    }
-
-    public void setOwner(String owner) {
-        this.owner = owner;
-    }
 }

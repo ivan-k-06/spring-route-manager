@@ -1,6 +1,9 @@
 package com.app.model;
 
 import jakarta.persistence.Embeddable;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.io.Serializable;
 
@@ -8,8 +11,11 @@ import java.io.Serializable;
  * Класс представляющий координаты
  * @author Ivan Kirillov
  */
+@Getter
+@Setter
+@NoArgsConstructor
 @Embeddable
-public final class Coordinates implements Serializable {
+public class Coordinates implements Serializable {
     private double x;
     private int y; //Максимальное значение поля: 71
 
@@ -23,32 +29,9 @@ public final class Coordinates implements Serializable {
         this.y = y;
     }
 
-    /**
-     * Пустой конструктор класса (необходим для модуля Jackson)
-     */
-    public Coordinates() {}
-
-    public void setX(double x) {
-        this.x = x;
-    }
-
     public void setY(int y) {
         if (y > 71) throw new IllegalArgumentException("Y > 71");
         this.y = y;
-    }
-
-    /**
-     * @return координаты по X
-     */
-    public double getX() {
-        return x;
-    }
-
-    /**
-     * @return координаты по Y
-     */
-    public int getY() {
-        return y;
     }
 
     @Override

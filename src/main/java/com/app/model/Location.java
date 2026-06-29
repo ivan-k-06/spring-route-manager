@@ -1,6 +1,9 @@
 package com.app.model;
 
 import jakarta.persistence.Embeddable;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.io.Serializable;
 
@@ -8,8 +11,11 @@ import java.io.Serializable;
  * Точка отправления/прибытия
  * @author Ivan Kirillov
  */
+@Getter
+@Setter
+@NoArgsConstructor
 @Embeddable
-public final class Location implements Serializable {
+public class Location implements Serializable {
     private long x;
     private Integer y;
     private Float z;
@@ -26,15 +32,6 @@ public final class Location implements Serializable {
         this.z = z;
     }
 
-    /**
-     * Пустой конструктор класса (необходим для модуля Jackson)
-     */
-    public Location() {}
-
-    public void setX(long x) {
-        this.x = x;
-    }
-
     public void setY(Integer y) {
         if (y == null) throw new IllegalArgumentException("y null");
         this.y = y;
@@ -43,27 +40,6 @@ public final class Location implements Serializable {
     public void setZ(Float z) {
         if (z == null) throw new IllegalArgumentException("z null");
         this.z = z;
-    }
-
-    /**
-     * @return координаты по X
-     */
-    public long getX() {
-        return x;
-    }
-
-    /**
-     * @return координаты по Y
-     */
-    public Integer getY() {
-        return y;
-    }
-
-    /**
-     * @return координаты по Z
-     */
-    public Float getZ() {
-        return z;
     }
 
     @Override
