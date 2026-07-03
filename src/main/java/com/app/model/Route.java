@@ -22,8 +22,8 @@ public class Route {
 
     @Embedded
     @AttributeOverrides({
-            @AttributeOverride(name = "x", column = @Column(name = "coordinates_x")),
-            @AttributeOverride(name = "y", column = @Column(name = "coordinates_y"))
+            @AttributeOverride(name = "latitude", column = @Column(name = "coord_lat")),
+            @AttributeOverride(name = "longitude", column = @Column(name = "coord_lon"))
     })
     private Coordinates coordinates;
 
@@ -32,17 +32,17 @@ public class Route {
 
     @Embedded
     @AttributeOverrides({
-            @AttributeOverride(name = "x", column = @Column(name = "from_x")),
-            @AttributeOverride(name = "y", column = @Column(name = "from_y")),
-            @AttributeOverride(name = "z", column = @Column(name = "from_z"))
+            @AttributeOverride(name = "name", column = @Column(name = "from_name")),
+            @AttributeOverride(name = "latitude", column = @Column(name = "from_lat")),
+            @AttributeOverride(name = "longitude", column = @Column(name = "from_lon"))
     })
     private Location from;
 
     @Embedded
     @AttributeOverrides({
-            @AttributeOverride(name = "x", column = @Column(name = "to_x")),
-            @AttributeOverride(name = "y", column = @Column(name = "to_y")),
-            @AttributeOverride(name = "z", column = @Column(name = "to_z"))
+            @AttributeOverride(name = "name", column = @Column(name = "to_name")),
+            @AttributeOverride(name = "latitude", column = @Column(name = "to_lat")),
+            @AttributeOverride(name = "longitude", column = @Column(name = "to_lon"))
     })
     private Location to;
 

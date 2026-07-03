@@ -3,24 +3,27 @@
 <head>
     <title>Вход — Менеджер Маршрутов</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+    <style>
+        .auth-link { display: block; text-align: center; margin-top: 24px; font-size: 14px; font-weight: 600; color: var(--ink); opacity: 0.7; text-decoration: none; }
+        .auth-link:hover { opacity: 1; color: var(--signal); }
+    </style>
 </head>
 <body>
     <div class="brand-bar">
         <div class="mark">Route<span>//</span>Manager</div>
+        <a class="logout" href="${pageContext.request.contextPath}/">На главную</a>
     </div>
 
-    <div class="page" style="display: flex; justify-content: center;">
+    <div class="page" style="display: flex; justify-content: center; margin-top: 40px;">
         <div style="max-width: 440px; width: 100%;">
-            <div class="page-header">
-                <span class="kicker">Доступ к системе</span>
-                <h1 class="giant-title">Вход в систему</h1>
-            </div>
+            <span class="kicker">С возвращением</span>
+            <h1 class="giant-title">Вход<br>в систему<span class="accent">.</span></h1>
 
-            <div class="panel">
+            <div class="panel" style="margin-top: 32px;">
                 <p class="msg error">${error}</p>
                 <p class="msg success">${message}</p>
 
-                <form action="${pageContext.request.contextPath}/auth" method="POST">
+                <form action="${pageContext.request.contextPath}/login" method="POST">
                     <div class="field">
                         <label for="login">Логин</label>
                         <input type="text" id="login" name="login" required autocomplete="username">
@@ -31,10 +34,9 @@
                         <input type="password" id="password" name="password" required autocomplete="current-password">
                     </div>
 
-                    <div class="btn-row">
-                        <button type="submit" class="btn full" name="action" value="login">Войти</button>
-                        <button type="submit" class="btn secondary full" name="action" value="register">Регистрация</button>
-                    </div>
+                    <button type="submit" class="btn full">Войти</button>
+
+                    <a href="${pageContext.request.contextPath}/register" class="auth-link">Ещё нет аккаунта? Зарегистрируйтесь</a>
                 </form>
             </div>
         </div>

@@ -7,46 +7,18 @@ import lombok.Setter;
 
 import java.io.Serializable;
 
-/**
- * Точка отправления/прибытия
- * @author Ivan Kirillov
- */
+@NoArgsConstructor
 @Getter
 @Setter
-@NoArgsConstructor
 @Embeddable
 public class Location implements Serializable {
-    private long x;
-    private Integer y;
-    private Float z;
+    private String name;      // Название города, например "Москва"
+    private Double latitude;
+    private Double longitude;
 
-    /**
-     * Конструктор класса
-     */
-    public Location(long x, Integer y, Float z) {
-        if (y == null) throw new IllegalArgumentException("y null");
-        if (z == null) throw new IllegalArgumentException("z null");
-
-        this.x = x;
-        this.y = y;
-        this.z = z;
-    }
-
-    public void setY(Integer y) {
-        if (y == null) throw new IllegalArgumentException("y null");
-        this.y = y;
-    }
-
-    public void setZ(Float z) {
-        if (z == null) throw new IllegalArgumentException("z null");
-        this.z = z;
-    }
-
-    @Override
-    public String toString() {
-        return "\n   X - " + x
-                + ";\n   Y - " + y
-                + ";\n   Z - " + z;
+    public Location(String name, Double latitude, Double longitude) {
+        this.name = name;
+        this.latitude = latitude;
+        this.longitude = longitude;
     }
 }
-

@@ -40,26 +40,25 @@ public class RouteController {
     @PostMapping
     public String addRoute(
             @RequestParam String name,
-            @RequestParam double coordX, @RequestParam int coordY,
-            @RequestParam long fromX, @RequestParam int fromY, @RequestParam float fromZ,
-            @RequestParam long toX, @RequestParam int toY, @RequestParam float toZ,
+            @RequestParam Double coordLat, @RequestParam Double coordLon,
+            @RequestParam String fromName, @RequestParam Double fromLat, @RequestParam Double fromLon,
+            @RequestParam String toName, @RequestParam Double toLat, @RequestParam Double toLon,
             @RequestParam float distance,
             HttpSession session,
             RedirectAttributes redirectAttributes) {
 
         String user = (String) session.getAttribute("user");
-        if (user == null) return "redirect:/auth";
+        if (user == null) return "redirect:/login";
 
         Route route = new Route();
         route.setName(name);
-        route.setCoordinates(new Coordinates(coordX, coordY));
-        route.setFrom(new Location(fromX, fromY, fromZ));
-        route.setTo(new Location(toX, toY, toZ));
+        route.setCoordinates(new Coordinates(coordLat, coordLon));
+        route.setFrom(new Location(fromName, fromLat, fromLon));
+        route.setTo(new Location(toName, toLat, toLon));
         route.setDistance(distance);
         route.setOwner(user);
 
         routeRepository.save(route);
-
         redirectAttributes.addFlashAttribute("toastSuccess", "Маршрут успешно добавлен!");
         return "redirect:/routes";
     }
