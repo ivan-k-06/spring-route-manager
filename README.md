@@ -1,4 +1,4 @@
-# Web Route Manager 🗺️
+# Spring Route Manager 🗺️
 ![Java](https://img.shields.io/badge/Java-17+-orange.svg)
 ![Spring Boot](https://img.shields.io/badge/Spring_Boot-6DB33F?logo=spring-boot&logoColor=white)
 ![Hibernate](https://img.shields.io/badge/Hibernate-59666C?logo=Hibernate&logoColor=white)
@@ -6,7 +6,7 @@
 ![HTML/CSS/JS](https://img.shields.io/badge/Frontend-Vanilla_JS_%7C_JSP-E34F26)
 ![Docker](https://img.shields.io/badge/-Docker-2496ED?logo=Docker&logoColor=white)
 
-**Web Route Manager** — это веб-приложение для управления коллекцией маршрутов. Пользователи могут регистрироваться в системе, просматривать общую базу маршрутов и добавлять свои собственные
+**Spring Route Manager** — это веб-приложение для управления коллекцией маршрутов. Пользователи могут регистрироваться в системе, просматривать общую базу маршрутов и добавлять свои собственные
 
 > Изначально проект был написан на чистом Jakarta Servlet API + JDBC. 
 В рамках развития архитектуры проект был успешно мигрирован на **Spring Boot 3**, **Spring MVC** и **Spring Data JPA (Hibernate)**. 
