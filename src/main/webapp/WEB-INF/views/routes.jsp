@@ -31,7 +31,7 @@
     <c:if test="${not empty toastError}"><div class="toast error">❌ ${toastError}</div></c:if>
 
     <div class="page">
-        <span class="kicker">Пользователь: ${currentUser}</span>
+        <span class="kicker">Пользователь: <c:out value="${currentUser}"/></span>
         <h1 id="pageTitle" class="giant-title">Управление<br>базой<span class="accent">.</span></h1>
 
         <div class="tabs-nav">
@@ -62,21 +62,21 @@
                     <c:forEach var="route" items="${routes}">
                         <tr>
                             <td><span class="route-id">#${route.id}</span></td>
-                            <td><span class="route-name">${route.name}</span></td>
+                            <td><span class="route-name"><c:out value="${route.name}"/></span></td>
                             <td>
                                 <span style="font-size: 11px;">Lat: ${route.coordinates.latitude}</span><br>
                                 <span style="font-size: 11px;">Lon: ${route.coordinates.longitude}</span>
                             </td>
                             <td>
-                                <strong>${route.from.name}</strong><br>
+                                <strong><c:out value="${route.from.name}"/></strong><br>
                                 <span style="font-size: 11px; opacity: 0.6;">${route.from.latitude}, ${route.from.longitude}</span>
                             </td>
                             <td>
-                                <strong>${route.to.name}</strong><br>
+                                <strong><c:out value="${route.to.name}"/></strong><br>
                                 <span style="font-size: 11px; opacity: 0.6;">${route.to.latitude}, ${route.to.longitude}</span>
                             </td>
                             <td><span class="distance-val">${route.distance}</span></td>
-                            <td>${route.owner}</td>
+                            <td><c:out value="${route.owner}"/></td>
                             <td>
                                 <c:if test="${route.owner eq currentUser}">
                                     <form action="${pageContext.request.contextPath}/routes/delete/${route.id}" method="POST" style="margin: 0;" onsubmit="return confirm('Точно удалить?');">
@@ -101,9 +101,6 @@
                         <label for="name">Название маршрута</label>
                         <input type="text" id="name" name="name" required placeholder="Например: Москва-Петербург">
                     </div>
-
-                    <input type="hidden" id="coordLat" name="coordLat" value="0.0">
-                    <input type="hidden" id="coordLon" name="coordLon" value="0.0">
 
                     <div class="field-group">
                         <p class="group-title">Откуда</p>
@@ -137,7 +134,7 @@
 
                     <div class="field" style="max-width: 220px;">
                         <label for="distance">Дистанция</label>
-                        <input type="number" step="0.01" min="1.01" id="distance" name="distance" required readonly>
+                        <input type="number" step="0.01" min="0" id="distance" name="distance" readonly>
                     </div>
                     <button type="submit" class="btn" style="margin-top: 16px;">💾 Сохранить маршрут</button>
                 </form>
@@ -161,6 +158,8 @@
     </div>
 
     <script>
+        const CONTEXT_PATH = "${pageContext.request.contextPath}";
+
         function openTab(tabId, btn, newTitleHtml) {
             document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
             document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
@@ -187,11 +186,8 @@
             const lon2 = parseFloat(document.getElementById('toLon').value);
 
             if (!isNaN(lat1) && !isNaN(lon1) && !isNaN(lat2) && !isNaN(lon2)) {
-                const dist = calculateDistance(lat1, lon1, lat2, lon2);
-                document.getElementById('distance').value = dist > 1 ? dist : 1.01;
-
-                document.getElementById('coordLat').value = ((lat1 + lat2) / 2).toFixed(5);
-                document.getElementById('coordLon').value = ((lon1 + lon2) / 2).toFixed(5);
+                // Preview only — the authoritative distance is recomputed on the server.
+                document.getElementById('distance').value = calculateDistance(lat1, lon1, lat2, lon2);
             }
         }
 
@@ -210,7 +206,7 @@
                 }
                 clearTimeout(timeoutId);
                 timeoutId = setTimeout(() => {
-                    fetch('/api/cities/search?q=' + encodeURIComponent(query))
+                    fetch(CONTEXT_PATH + '/api/cities/search?q=' + encodeURIComponent(query))
                         .then(response => response.json())
                         .then(cities => {
                             suggestionsBox.innerHTML = '';

@@ -2,6 +2,8 @@ package com.app.service;
 
 import com.app.web.api.CityDto;
 import com.fasterxml.jackson.databind.JsonNode;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClient;
 
@@ -10,6 +12,8 @@ import java.util.List;
 
 @Service
 public class GeocodingService {
+
+    private static final Logger log = LoggerFactory.getLogger(GeocodingService.class);
 
     private final RestClient restClient;
 
@@ -46,7 +50,7 @@ public class GeocodingService {
             return cities;
 
         } catch (Exception e) {
-            System.err.println("Ошибка при запросе к Nominatim: " + e.getMessage());
+            log.warn("Ошибка при запросе к Nominatim: {}", e.getMessage());
             return List.of();
         }
     }

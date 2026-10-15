@@ -2,8 +2,8 @@ package com.app.web.controllers;
 
 import com.app.model.User;
 import com.app.repository.UserRepository;
-import com.app.auth.PasswordHasher;
 import jakarta.servlet.http.HttpSession;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -13,9 +13,11 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class AuthController {
 
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
-    public AuthController(UserRepository userRepository) {
+    public AuthController(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @GetMapping("/login")
@@ -24,11 +26,14 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public String processLogin(@RequestParam String login, @RequestParam String password, HttpSession session, Model model) {
+    public String processLogin(@RequestParam String login,
+                               @RequestParam String password,
+                               HttpSession session,
+                               Model model) {
         return userRepository.findByLogin(login)
-                .filter(u -> u.getPasswordHash().equals(PasswordHasher.sha512(password)))
+                .filter(u -> passwordEncoder.matches(password, u.getPasswordHash()))
                 .map(u -> {
-                    session.setAttribute("user", login);
+                    session.setAttribute("user", u.getLogin());
                     return "redirect:/routes";
                 })
                 .orElseGet(() -> {
@@ -43,16 +48,23 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public String processRegister(@RequestParam String login, @RequestParam String password, RedirectAttributes redirectAttributes, Model model) {
+    public String processRegister(@RequestParam String login,
+                                  @RequestParam String password,
+                                  RedirectAttributes redirectAttributes,
+                                  Model model) {
+        if (login.isBlank() || password.isBlank()) {
+            model.addAttribute("error", "Логин и пароль не могут быть пустыми.");
+            return "register";
+        }
+
         if (userRepository.findByLogin(login).isPresent()) {
             model.addAttribute("error", "Этот логин уже занят. Придумайте другой.");
-            return "register"; // Оставляем на странице регистрации с ошибкой
+            return "register";
         }
 
         User user = new User();
         user.setLogin(login);
-        user.getPasswordHash();
-        user.setPasswordHash(PasswordHasher.sha512(password));
+        user.setPasswordHash(passwordEncoder.encode(password));
         userRepository.save(user);
 
         redirectAttributes.addFlashAttribute("message", "Регистрация успешна! Теперь вы можете войти.");
