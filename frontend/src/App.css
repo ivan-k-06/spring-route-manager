@@ -1,0 +1,33 @@
+.landing {
+    min-height: 100dvh;
+
+    display: grid;
+    place-items: center;
+
+    padding: clamp(1.5rem, 2.5vw, 4rem);
+    background-color: var(--color-background);
+}
+
+.landing__content {
+    width: min(100%, 50rem);
+    text-align: center;
+}
+
+.landing__title {
+    margin: 0;
+
+    font-size: clamp(2.5rem, 8vw, 6rem);
+    line-height: 1;
+    letter-spacing: -0.03em;
+
+    color: var(--color-text);
+}
+
+.landing__description {
+    margin: 1rem 0 0;
+
+    font-size: clamp(1rem, 1.25vw, 1.5rem);
+    line-height: 1.5;
+
+    color: var(--color-text-secondary);
+}
