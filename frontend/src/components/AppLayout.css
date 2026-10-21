@@ -1,0 +1,28 @@
+.app-shell { min-height: 100dvh; display: grid; grid-template-columns: 16rem minmax(0, 1fr); }
+.sidebar { position: sticky; top: 0; height: 100dvh; display: flex; flex-direction: column; padding: 1.5rem 1rem; border-right: 1px solid var(--color-border); background: var(--color-surface); }
+.sidebar__logo { width: fit-content; padding: 0.35rem 0.7rem; font-size: 1.55rem; font-weight: 900; letter-spacing: -0.05em; text-decoration: none; }
+.sidebar__logo span { color: var(--color-accent); }
+.sidebar__nav { display: grid; gap: 0.35rem; margin-top: 3rem; }
+.sidebar__link { display: flex; align-items: center; gap: 0.75rem; padding: 0.8rem 0.9rem; border-radius: 0.8rem; color: var(--color-text-secondary); font-weight: 650; text-decoration: none; }
+.sidebar__link > span { display: grid; width: 1.7rem; height: 1.7rem; place-items: center; border-radius: 0.55rem; background: var(--color-surface-muted); }
+.sidebar__link:hover, .sidebar__link--active { color: var(--color-accent); background: var(--color-accent-soft); }
+.sidebar__link--active > span { color: #fff; background: var(--color-accent); }
+.sidebar__profile { display: flex; align-items: center; gap: 0.7rem; margin-top: auto; padding: 0.85rem; border-radius: 0.9rem; background: var(--color-surface-muted); }
+.sidebar__avatar { display: grid; flex: 0 0 auto; width: 2.3rem; height: 2.3rem; place-items: center; border-radius: 0.75rem; color: #fff; background: var(--color-accent); font-size: 0.78rem; font-weight: 800; }
+.sidebar__profile strong, .sidebar__profile small { display: block; }
+.sidebar__profile small { margin-top: 0.15rem; color: var(--color-text-secondary); }
+.app-shell__content { min-width: 0; }
+.topbar { min-height: 4.5rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 0.8rem clamp(1rem, 3vw, 2.5rem); border-bottom: 1px solid var(--color-border); background: rgba(255, 255, 255, 0.88); backdrop-filter: blur(14px); }
+.topbar strong, .topbar span { display: block; }
+.topbar span { margin-top: 0.12rem; color: var(--color-text-secondary); font-size: 0.8rem; }
+.topbar__exit { color: var(--color-text-secondary); font-size: 0.9rem; font-weight: 700; text-decoration: none; }
+.topbar__exit:hover { color: var(--color-accent); }
+
+@media (max-width: 760px) {
+  .app-shell { grid-template-columns: 1fr; padding-bottom: 5.5rem; }
+  .sidebar { z-index: 10; position: fixed; inset: auto 0 0; height: auto; padding: 0.65rem; border-top: 1px solid var(--color-border); border-right: 0; }
+  .sidebar__logo, .sidebar__profile { display: none; }
+  .sidebar__nav { grid-template-columns: repeat(3, 1fr); margin: 0; }
+  .sidebar__link { flex-direction: column; gap: 0.25rem; padding: 0.4rem; font-size: 0.72rem; }
+  .topbar { min-height: 4rem; }
+}
