@@ -1,0 +1,25 @@
+.page { width: min(100%, 90rem); margin-inline: auto; padding: clamp(1.5rem, 4vw, 3.5rem); }
+.page__header { display: flex; align-items: end; justify-content: space-between; gap: 1rem; margin-bottom: 2rem; }
+.page__eyebrow { margin: 0 0 0.55rem; color: var(--color-accent); font-size: 0.78rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; }
+.page__title { margin: 0; font-size: clamp(2rem, 4vw, 3.25rem); line-height: 1; letter-spacing: -0.045em; }
+.page__subtitle { max-width: 42rem; margin: 0.7rem 0 0; color: var(--color-text-secondary); line-height: 1.55; }
+.page__action { flex: 0 0 auto; min-height: 2.8rem; display: inline-flex; align-items: center; justify-content: center; padding: 0.7rem 1rem; border-radius: 0.75rem; color: #fff; background: var(--color-accent); cursor: pointer; font-weight: 750; text-decoration: none; }
+.page__action:hover { background: var(--color-accent-hover); }
+.panel { border: 1px solid var(--color-border); border-radius: 1.2rem; background: var(--color-surface); box-shadow: var(--shadow-card); }
+.panel__header { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1.25rem 1.4rem; border-bottom: 1px solid var(--color-border); }
+.panel__header h2 { margin: 0; font-size: 1.05rem; }
+.panel__header a { color: var(--color-accent); font-size: 0.88rem; font-weight: 700; text-decoration: none; }
+.data-list { margin: 0; padding: 0; list-style: none; }
+.data-list__item { display: grid; align-items: center; gap: 1rem; padding: 1rem 1.4rem; border-bottom: 1px solid var(--color-border); }
+.data-list__item:last-child { border-bottom: 0; }
+.data-list__primary strong, .data-list__primary span { display: block; }
+.data-list__primary span, .data-list__muted { margin-top: 0.25rem; color: var(--color-text-secondary); font-size: 0.86rem; }
+.status { width: fit-content; padding: 0.4rem 0.65rem; border-radius: 999px; font-size: 0.76rem; font-weight: 750; }
+.status--planned { color: var(--color-accent); background: var(--color-accent-soft); }
+.status--recruiting { color: var(--color-warning); background: #fff2d8; }
+.status--completed { color: var(--color-success); background: #e3f6ee; }
+
+@media (max-width: 620px) {
+  .page__header { align-items: stretch; flex-direction: column; }
+  .page__action { width: 100%; }
+}
